@@ -333,50 +333,6 @@ HRESULT InitDevice() // resource 생성
 	// user buffer에 vertex 생성
 	SimpleVertex sVertices[] =
 	{
-		// color있을 때
-		/*{.Pos = XMFLOAT3(-1.0f, 1.0f, -1.0f),
-		.Color = XMFLOAT4(1.0f, 0.0f, 0.0f, 1.0f) },
-		{.Pos = XMFLOAT3(1.0f, 1.0f, -1.0f),
-		.Color = XMFLOAT4(0.0f, 1.0f, 0.0f, 1.0f) },
-		{.Pos = XMFLOAT3(1.0f, 1.0f, 1.0f),
-		.Color = XMFLOAT4(0.0f, 1.0f, 1.0f, 1.0f) },
-		{.Pos = XMFLOAT3(-1.0f, 1.0f, 1.0f),
-		.Color = XMFLOAT4(1.0f, 0.0f, 0.0f, 1.0f) },
-		{.Pos = XMFLOAT3(-1.0f, -1.0f, -1.0f),
-		.Color = XMFLOAT4(1.0f, 0.0f, 1.0f, 1.0f) },
-		{.Pos = XMFLOAT3(1.0f, -1.0f, -1.0f),
-		.Color = XMFLOAT4(1.0f, 1.0f, 0.0f, 1.0f) },
-		{.Pos = XMFLOAT3(1.0f, -1.0f, 1.0f),
-		.Color = XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f) },
-		{.Pos = XMFLOAT3(-1.0f, -1.0f, 1.0f),
-		.Color = XMFLOAT4(0.0f, 0.0f, 0.0f, 1.0f) },*/
-
-		// position + UV coordinates
-		/*{XMFLOAT3(-1.0f, 1.0f, -1.0f), XMFLOAT2(1.0f, 0.0f)},
-		{XMFLOAT3(1.0f, 1.0f, -1.0f), XMFLOAT2(0.0f, 0.0f) },
-		{XMFLOAT3(1.0f, 1.0f, 1.0f), XMFLOAT2(0.0f, 1.0f) },
-		{XMFLOAT3(-1.0f, 1.0f, 1.0f), XMFLOAT2(1.0f, 1.0f) },
-		{XMFLOAT3(-1.0f, -1.0f, -1.0f), XMFLOAT2(0.0f, 0.0f) },
-		{XMFLOAT3(1.0f, -1.0f, -1.0f), XMFLOAT2(1.0f, 0.0f) },
-		{XMFLOAT3(1.0f, -1.0f, 1.0f), XMFLOAT2(1.0f, 1.0f) },
-		{XMFLOAT3(-1.0f, -1.0f, 1.0f), XMFLOAT2(0.0f, 1.0f) },
-		{XMFLOAT3(-1.0f, -1.0f, 1.0f), XMFLOAT2(0.0f, 1.0f) },
-		{XMFLOAT3(-1.0f, -1.0f, -1.0f), XMFLOAT2(1.0f, 1.0f) },
-		{XMFLOAT3(-1.0f, 1.0f, -1.0f), XMFLOAT2(1.0f, 0.0f) },
-		{XMFLOAT3(-1.0f, 1.0f, 1.0f), XMFLOAT2(0.0f, 0.0f) },
-		{XMFLOAT3(1.0f, -1.0f, 1.0f), XMFLOAT2(1.0f, 1.0f) },
-		{XMFLOAT3(1.0f, -1.0f, -1.0f), XMFLOAT2(0.0f, 1.0f) },
-		{XMFLOAT3(1.0f, 1.0f, -1.0f), XMFLOAT2(0.0f, 0.0f) },
-		{XMFLOAT3(1.0f, 1.0f, 1.0f), XMFLOAT2(1.0f, 0.0f) },
-		{XMFLOAT3(-1.0f, -1.0f, -1.0f), XMFLOAT2(0.0f, 1.0f) },
-		{XMFLOAT3(1.0f, -1.0f, -1.0f), XMFLOAT2(1.0f, 1.0f) },
-		{XMFLOAT3(1.0f, 1.0f, -1.0f), XMFLOAT2(1.0f, 0.0f) },
-		{XMFLOAT3(-1.0f, 1.0f, -1.0f), XMFLOAT2(0.0f, 0.0f) },
-		{XMFLOAT3(-1.0f, -1.0f, 1.0f), XMFLOAT2(1.0f, 1.0f) },
-		{XMFLOAT3(1.0f, -1.0f, 1.0f), XMFLOAT2(0.0f, 1.0f) },
-		{XMFLOAT3(1.0f, 1.0f, 1.0f), XMFLOAT2(0.0f, 0.0f) },
-		{XMFLOAT3(-1.0f, 1.0f, 1.0f), XMFLOAT2(1.0f, 0.0f) },*/
-
 		// pos + UV + normal
 		{ XMFLOAT3(-1.0f, 1.0f, -1.0f), XMFLOAT2(1.0f, 0.0f), XMFLOAT3(0.0f, 1.0f, 0.0f) },
 		{ XMFLOAT3(1.0f, 1.0f, -1.0f), XMFLOAT2(0.0f, 0.0f), XMFLOAT3(0.0f, 1.0f, 0.0f) },
@@ -402,14 +358,6 @@ HRESULT InitDevice() // resource 생성
 		{ XMFLOAT3(1.0f, -1.0f, 1.0f), XMFLOAT2(0.0f, 1.0f), XMFLOAT3(0.0f, 0.0f, 1.0f) },
 		{ XMFLOAT3(1.0f, 1.0f, 1.0f), XMFLOAT2(0.0f, 0.0f), XMFLOAT3(0.0f, 0.0f, 1.0f) },
 		{ XMFLOAT3(-1.0f, 1.0f, 1.0f), XMFLOAT2(1.0f, 0.0f), XMFLOAT3(0.0f, 0.0f, 1.0f) },
-
-		// test용 단순 삼각형
-		//{.Pos = XMFLOAT3(0.0f, 0.5f, 0.0f),
-		//.Color = XMFLOAT4(1.0f, 0.0f, 0.0f, 1.0f) },
-		//{.Pos = XMFLOAT3(0.45f, -0.5, 0.0f),
-		//.Color = XMFLOAT4(0.0f, 1.0f, 0.0f, 1.0f) },
-		//{.Pos = XMFLOAT3(-0.45f, -0.5f, 0.0f),
-		//.Color = XMFLOAT4(0.0f, 0.0f, 1.0f, 1.0f) },
 	};
 
 	// cpu, gpu 공유할 vertex buffer의 metadata
@@ -433,19 +381,6 @@ HRESULT InitDevice() // resource 생성
 
 	// index buffer
 	WORD sIndices[] = {
-		/*3,1,0,
-		2,1,3,
-		0,5,4,
-		1,5,0,
-		3,4,7,
-		0,4,3,
-		1,6,5,
-		2,6,1,
-		2,7,6,
-		3,7,2,
-		6,4,5,
-		7,4,6,*/
-
 		3,1,0,
 		2,1,3,
 
@@ -490,30 +425,7 @@ HRESULT InitDevice() // resource 생성
 	ID3DBlob* pErrorBlob = nullptr;
 
 	CompileShaderFromFile(L"../../Source/Library/VS.hlsl", "VS", "vs_5_0", &VS);
-	//hr = D3DCompileFromFile(
-	//	L"C:\\Users\\user\\source\\repos\\Source\\Library\\VS.hlsl",
-	//	nullptr, // shader macros
-	//	nullptr, // include files
-	//	"VS", // Entry point
-	//	"vs_5_0", // shader target
-	//	dwShaderFlags, // flag1 
-	//	0, // flag2
-	//	&VS, // ID3DBlob out
-	//	&pErrorBlob // error blob out
-	//);
-
 	CompileShaderFromFile(L"../../Source/Library/PS.hlsl", "PS", "ps_5_0", &PS);
-	//D3DCompileFromFile(
-	//	L"C:\\Users\\user\\source\\repos\\Source\\Library\\PS.hlsl", // FileName
-	//	nullptr, // shader macros
-	//	nullptr, // include files
-	//	"PS", // Entry point. 셰이터 파일 안에 정의된 함수 이름
-	//	"ps_5_0", // shader target
-	//	0, // flag1 
-	//	0, // flag2
-	//	&PS, // ID3DBlob out
-	//	nullptr // error blob out
-	//);
 	CompileShaderFromFile(L"../../Source/Library/PSSolid.hlsl", "PSSolid", "ps_5_0", &PSSolid);
 
 
@@ -563,7 +475,6 @@ HRESULT InitDevice() // resource 생성
 	D3D11_INPUT_ELEMENT_DESC layouts[] =
 	{
 		{"POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0 },
-		/*{"COLOR", 0, DXGI_FORMAT_R32G32B32A32_FLOAT, 0, 12, D3D11_INPUT_PER_VERTEX_DATA, 0 },*/
 		{"TEXCOORD", 0, DXGI_FORMAT_R32G32_FLOAT, 0, 12, D3D11_INPUT_PER_VERTEX_DATA, 0 },
 		{"NORMAL", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 20, D3D11_INPUT_PER_VERTEX_DATA, 0 },
 	};
