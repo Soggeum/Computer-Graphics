@@ -1,36 +1,15 @@
 #include "Renderer/Renderable.h"
 
-
-
-//Renderable::Renderable(_In_ const std::filesystem::path& textureFilePath)
-//	: m_vertexBuffer()
-//	, m_indexBuffer()
-//	, m_cbChangeEveryFrame()
-//	, m_textureRV()
-//	, m_samplerLinear()
-//	, m_vertexShader()
-//	, m_pixelShader()
-//	, m_textureFilePath(textureFilePath)
-//	, m_outputColor(XMFLOAT4(1.0f, 1.0f, 1.0f,1.0f))
-//	, m_world(XMMatrixIdentity())
-//	, m_bHasTexture(TRUE)
-//{
-//}
-
 Renderable::Renderable(_In_ const XMFLOAT4& outputColor)
 	: m_vertexBuffer()
 	, m_indexBuffer()
 	, m_cbChangeEveryFrame()
 	, m_aMeshes()
 	, m_aMaterials()
-	//, m_textureRV()
-	//, m_samplerLinear()
 	, m_vertexShader()
 	, m_pixelShader()
-	//, m_textureFilePath()
 	, m_outputColor(outputColor)
 	, m_world(XMMatrixIdentity())
-	//, m_bHasTexture(FALSE)
 {
 }
 
@@ -71,26 +50,6 @@ HRESULT Renderable::initialize(
 	hr = pDevice->CreateBuffer(&bd, nullptr, m_cbChangeEveryFrame.GetAddressOf());
 	if (FAILED(hr))
 		return hr;
-
-	/*if (m_bHasTexture)
-	{
-		hr = CreateDDSTextureFromFile(pDevice, m_textureFilePath.filename().wstring().c_str(), nullptr, m_textureRV.GetAddressOf());
-		if (FAILED(hr))
-			return hr;
-
-		D3D11_SAMPLER_DESC sampDesc = { };
-		sampDesc.Filter = D3D11_FILTER_MIN_MAG_MIP_LINEAR;
-		sampDesc.AddressU = D3D11_TEXTURE_ADDRESS_WRAP;
-		sampDesc.AddressV = D3D11_TEXTURE_ADDRESS_WRAP;
-		sampDesc.AddressW = D3D11_TEXTURE_ADDRESS_WRAP;
-		sampDesc.ComparisonFunc = D3D11_COMPARISON_NEVER;
-		sampDesc.MinLOD = 0;
-		sampDesc.MaxLOD = D3D11_FLOAT32_MAX;
-
-		hr = pDevice->CreateSamplerState(&sampDesc, m_samplerLinear.GetAddressOf());
-		if (FAILED(hr))
-			return hr;
-	}*/
 
 	return S_OK;	
 }
@@ -191,14 +150,3 @@ void Renderable::SetPixelShader(_In_ const std::shared_ptr<PixelShader>& pixelSh
 {
 	m_pixelShader = pixelShader;
 }
-
-
-//ComPtr<ID3D11ShaderResourceView>& Renderable::GetTextureResourceView()
-//{
-//	return m_textureRV;
-//}
-//
-//ComPtr<ID3D11SamplerState>& Renderable::GetSamplerState()
-//{
-//	return m_samplerLinear;
-//}
