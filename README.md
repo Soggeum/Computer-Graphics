@@ -28,55 +28,73 @@
   (전체적인 UML Diagram)
   <img width="923" height="580" alt="image" src="https://github.com/user-attachments/assets/fe02fb26-bcae-49b0-8738-304f4c40a18f" />
 
-# 객체 구현
+---
 
-- Game
-   <img width="646" height="327" alt="image" src="https://github.com/user-attachments/assets/c7dfd309-0153-4818-9281-25ae0400185a" />
-  - Main Window와 Render 객체를 통해 게임을 진행합니다.
-  - Window에서 받은 입력을 처리하거나 입력이 없을 경우 Render 객체를 이용하여 렌더링합니다.
+#  Game
+  
+<img width="646" height="327" alt="image" src="https://github.com/user-attachments/assets/c7dfd309-0153-4818-9281-25ae0400185a" />
+   
+- Main Window와 Render 객체를 통해 게임을 진행합니다.
+- Window에서 받은 입력을 처리하거나 입력이 없을 경우 Render 객체를 이용하여 렌더링합니다.
+
+<img width="800" height="450" alt="image" src="https://github.com/user-attachments/assets/29a74e4c-0e6a-490c-b13e-1f837ab6977a" />
+
+---
+
+# Renderer
+
+<img width="1347" height="464" alt="image" src="https://github.com/user-attachments/assets/f7ae8639-1265-44d9-b144-22b516efe4f2" />
+  
+- 렌더링을 담당하는 객체로, 렌더링 후 화면에 표시까지 해줍니다.
+  
+- color/depth buffer 초기화 (ClearRenderTargetView, ClearDepthStencilView)
+  
+- constant buffer update
+  
+- Pipeline state(셰이더, 버퍼 등) 설정 및 binding
  
-  <img width="800" height="450" alt="image" src="https://github.com/user-attachments/assets/29a74e4c-0e6a-490c-b13e-1f837ab6977a" />
+- Draw로 오브젝트 렌더링
+  
+- present로 front/back buffer swap하여 화면에 출력
+  
+---
 
-- Renderer
-  <img width="1347" height="464" alt="image" src="https://github.com/user-attachments/assets/f7ae8639-1265-44d9-b144-22b516efe4f2" />
-   - 렌더링을 담당하는 객체로, 렌더링 후 화면에 표시까지 해줍니다.
-   - 순서 :	color/depth buffer 초기화 (ClearRenderTargetView, ClearDepthStencilView)
-   - 업데이트 필요한 constant buffer(광원, WVM matrix, texture...)들 update
-   - Pipeline state(셰이더, 버퍼 등) 설정 및 binding
-   - Draw로 오브젝트 렌더링
-   - 다시 반복하며 object 렌더링 후, 마지막에 present로 front/back buffer swap
-
-
+# Renderable
+  
 - 재사용 가능한 객체 Renderable, BaseCube, Model, Character를 구현하여 렌더링하였습니다.
-  <img width="661" height="444" alt="image" src="https://github.com/user-attachments/assets/fd65f5d7-37f8-441c-95f7-72add46b4762" />
-
-  - Renderable: 렌더링 되어질 객체의 가장 기본, 부모 클래스.
-  - BaseCube: Cube 형태의 객체의 가장 기본이 되는 부모 클래스. 회전하는 Rotation Cube 객체는 이 클래스를 상속받음.
-  - Model: 텍스쳐 파일을 가지는 객체 클래스. Renderable 클래스를 상속받아 mesh, material 등을 사용함.
-  - Character: 키보드 입력을 받아 이동 및 회전 기능을 가지는 객체 클래스. Model 클래스를 상속받아 골렘 캐릭터를 생성.
-
-
-# 함수 소개
-
-- InitDevice: GPU Pipeline을 위한 Resource 생성
-  - Render Target, Back Buffer, Depth Buffer, ViewPort
-  - Vertex Buffer, Index Buffer
-  - Vertex Shader, Pixel Shader, Input Layout 등
+<img width="661" height="444" alt="image" src="https://github.com/user-attachments/assets/fd65f5d7-37f8-441c-95f7-72add46b4762" />
  
+- Renderable: 렌더링 되어질 객체들의 가장 기본, 부모 클래스입니다.
+  <img width="555" height="485" alt="image" src="https://github.com/user-attachments/assets/b2a12983-90cc-44ae-9190-5bbd4df7b43a" />
 
-  <br>
-  
-  - 시간 Frame 당 회전 Rotation Matrix 계산
-      <img width="1266" height="514" alt="image" src="https://github.com/user-attachments/assets/670504f5-8277-4034-a0f4-b4acea230e72" />
-
-  
-- Shader.fx: Vertex Shader, Pixel Shader 구현
-  
-  <img width="800" height="254" alt="image" src="https://github.com/user-attachments/assets/d78aac2a-6abc-4595-ad4a-60e0a8b320a3" />
-  <img width="800" height="344" alt="image" src="https://github.com/user-attachments/assets/158bb10c-e6df-4878-9df8-823c7bccd912" />
+   - BasicMeshEntry 구조체를 이용하여 mesh 정보를 저장하였습니다.
+       <img width="1096" height="500" alt="image" src="https://github.com/user-attachments/assets/c270f112-3efb-466c-a42e-e9d8a9f5c8d4" />
+   - Material class를 이용하여 텍스쳐 정보와 색상 정보를 저장하였습니다.
+       <img width="618" height="333" alt="image" src="https://github.com/user-attachments/assets/f94fc28a-1916-4828-b61a-460aaa2d532b" />
 
 
-- 플레이어의 입력을 받아 골렘의 vertex들을 움직여주었고 그에 따라 카메라의 시점도 함께 바꾸어주었습니다.
+- BaseCube: Cube 형태 객체의 가장 기본이 되는 부모 클래스입니다.
   
-<img width="387" height="299" alt="image" src="https://github.com/user-attachments/assets/07f31be1-59ff-4940-838f-595b2c3a0089" />
-<img width="362" height="244" alt="image" src="https://github.com/user-attachments/assets/db61176e-d7e4-4206-b50a-2cf8da3a6d94" />
+- Model: 텍스쳐 파일을 가지는 객체 클래스입니다.
+  
+- Character: 키보드 입력을 받아 이동 및 회전 기능을 가지는 객체 클래스로 이 클래스를 사용하여 골렘을 만들었습니다.
+
+---
+
+# Shader
+
+<img width="470" height="276" alt="image" src="https://github.com/user-attachments/assets/c384cc3a-bf13-40da-a21c-4e8ef10fdabd" />
+
+- Vertex Shader, Pixel Shader를 .fx파일을 이용하여 구현하였습니다.
+- Vertex Shader: 각 Vertex에 World, View, Projection Transform을 해주었습니다.
+  <img width="1001" height="512" alt="image" src="https://github.com/user-attachments/assets/47676a0b-08a3-4937-8760-967b36f5c733" />
+
+- Pixel Shader: Phong Lighting Model을 이용하여 색상을 결정해주었습니다. 광원의 경우(PSSolid) 처리 없이 바로 색을 반환했습니다.
+  <img width="1818" height="863" alt="image" src="https://github.com/user-attachments/assets/3fd7de42-53c7-4ab6-9861-db2b723324d6" />
+
+
+# 키보드 입력에 따른 골렘 및 카메라 움직임
+
+<img width="600" height="300" alt="image" src="https://github.com/user-attachments/assets/07f31be1-59ff-4940-838f-595b2c3a0089" />
+
+<img width="600" height="300" alt="image" src="https://github.com/user-attachments/assets/db61176e-d7e4-4206-b50a-2cf8da3a6d94" />
